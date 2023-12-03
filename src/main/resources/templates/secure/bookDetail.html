@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" media="all"
+href="../static/css/style1.css" th:href="@{/css/style1.css}" />
+    <title th:text="${book.title} + ' Details'">Book Details</title>
+</head>
+<body>
+    <h2 th:text="${book.title}"></h2>
+    <p th:text="${book.author}"></p>
+    <p th:text="${book.description}"></p>
+    
+    <form th:action="@{/books/addToCart/{id}(id=${book.id})}" method="post">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
+		<button type="submit">Add to Cart</button>
+		</form>
+		
+		<a th:href="@{/}">Back to Book List</a>
+		<!-- Add these links to your existing templates -->
+		<br>
+		<a th:href="@{/register}">Register</a>
+		<br>
+		<a th:href="@{/login}">Login</a>
+		<br>
+		<a th:href="@{/viewCart}">View Cart</a>
+
+
+</body>
+</html>

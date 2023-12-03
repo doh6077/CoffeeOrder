@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Bookstore - Shopping Cart</title>
+	<link rel="stylesheet" type="text/css" media="all"
+href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<h2>Shopping Cart</h2>
+	<form th:action="@{/books/updateCart}" method="post">
+		<div th:if="${#lists.isEmpty(cartItems)}">
+			<p>This cart is empty.</p>
+		</div>
+	
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="s : ${cartItems}">
+					<td th:text="${s.book.title}">Frank</td>
+					<td th:text="${s.quantity}">111</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+
+    <form th:action="@{/books/placeOrder}" method="post">
+        <button type="submit">Place Order</button>
+    </form>
+    
+    <a th:href="@{/}">Back to Book List</a>
+</body>
+</html>

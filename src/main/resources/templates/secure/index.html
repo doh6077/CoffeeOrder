@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Lecture8</title>
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" type="text/css" media="all"
+href="../static/css/mycss.css" th:href="@{/css/mycss.css}" />
+</head>
+
+<body>
+
+	<table th:if="${bookList != null AND bookList.size() > 0}">
+		<tr th:each="s : ${bookList}">
+			<td th:text="${s.title}">Frank</td>
+			<td th:text="${s.author}">111</td>
+			<td th:text="${s.ISBN}">home</td>
+			<td th:text="${s.price}">111</td> <!-- Change th:number to th:text here -->
+			<td th:text="${s.description}">diploma</td>
+			<td><a th:href="@{/viewBookById/}+${s.id}">View</a></td>
+			<td><a th:href="@{/editBookById/}+${s.id}">Edit</a></td>
+			<td><a th:href="@{/deleteBookById/}+${s.id}">Delete</a></td>
+		</tr>
+	</table>
+
+	<br>
+	<hr><br>
+	
+	
+	<!-- Update the Thymeleaf template to use "Book" instead of "book" -->
+	<form method="post" action="/insertBook" th:action="@{/insertBook}" th:object="${book}">
+		Title: <input type="text" name="title" th:field="*{title}" /><br>
+		Author: <input type="text" name="author" th:field="*{author}" /><br>
+		ISBN: <input type="text" name="ISBN" th:field="*{ISBN}" /><br>
+		Price: <input type="number" name="price" th:field="*{price}" /><br>
+		Description: <input type="text" name="description" th:field="*{description}" /><br>
+		<input type="submit" value="GO" />
+	</form>
+	
+	<br>
+	
+	<br>
+			<form method="get" action="#" th:action="@{/logout}">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+	    <a th:href="@{/viewCart}">View Cart</a>
+</body>
+
+</html>
